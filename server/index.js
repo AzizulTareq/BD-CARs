@@ -19,6 +19,7 @@ app.use(cookieParser());
 const { Chat } = require("./models/Chat");
 
 app.use('/api/users', require('./routes/users'));
+app.use('/api/product', require('./routes/product'));
 
 
 io.on("connection", socket => {

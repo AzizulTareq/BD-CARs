@@ -1,34 +1,43 @@
-import { response } from 'express';
-import React from 'react'
+
+import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
 import { AiFillPlusCircle } from 'react-icons/ai';
 import Axios from 'axios'
 
-const FileUpload = () => {
+const FileUpload = (props) => {
+
+    const [Images, setImages] = useState([]);
 
     const onDrop = (files) => {
         let formData = new FormData();
         const config = {
             header: { 'content-type': 'multipart/form-data'}
         }
-        formData.append('file', files[0])
-    }
+        formData.append("file"  , files[0])
+    
 
     Axios.post('/api/product/uploadImage', formData, config)
     .then(response => {
         if(response.data.success) {
 
+            setImages([...Images, response.data.image])
+            props.refreshFunction([...Images, response.data.image])
+        
         }else {
             alert('Failed to save the image')
-        }
+        } 
     })
+    }
 
+    const onDelete = (image) => {
+        console.log('1')
+    }
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <Dropzone
                 onDrop={onDrop}
-                multiple
-                maxSize
+                multiple={false}
+                maxSize={800000000}
             >
                 {({ getRootProps, getInputProps }) => (
                     <div style={{
@@ -47,9 +56,11 @@ const FileUpload = () => {
             </Dropzone>
 
             <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll'}}>
-                <div onClick>
-                    <img />
-                </div>
+                {Images.map((image, index) => (
+                    <div onClick={() => onDelete(image)}>
+                        <img style={{minWidth: '300PX', width: '300px', height: '240px' }} src={`http://localhost:5000/${image}`} alt={`productImg-${index}`} />
+                    </div>
+                ))}
 
             </div>
         </div>

@@ -18,7 +18,7 @@ const UploadProductPage = () => {
   const [DescriptionValue, setDescriptionValue] = useState("")
   const [ContinentValue, setContinentValue] = useState(1)
   const [PriceValue, setPriceValue] = useState(0)
-
+  const [Images, setImages] = useState([])
   const onTitleChange = (event) => {
     setTitleValue(event.currentTarget.value)
 }
@@ -35,6 +35,11 @@ const onContinentsSelectChange = (event) => {
     setContinentValue(event.currentTarget.value)
 }
 
+const updateImages = (newImages) => {
+  setImages(newImages)
+  console.log(newImages)
+}
+
     return (
         <>
         <Form className="container">
@@ -42,7 +47,7 @@ const onContinentsSelectChange = (event) => {
           <br />
         <Card.Title className="text-center">Add A Car To Sell</Card.Title>
 
-<FileUpload />
+<FileUpload refreshFunction={updateImages} />
 <br />
 <br />
   <Form.Group controlId="formGroupEmail">
@@ -66,7 +71,6 @@ const onContinentsSelectChange = (event) => {
     <Form.Control type="number" 
     onChange={onPriceChange}
     value={PriceValue}
-    type="number"
     placeholder="Price" />
   </Form.Group>
 
