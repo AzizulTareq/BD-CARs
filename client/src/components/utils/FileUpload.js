@@ -30,7 +30,13 @@ const FileUpload = (props) => {
     }
 
     const onDelete = (image) => {
-        console.log('1')
+        const imageIndex = Images.indexOf(image)
+
+        let newImages = [...Images]
+        newImages.splice(imageIndex, 1)
+
+        setImages(newImages)
+        props.refreshFunction(newImages)
     }
     return (
         <div style={{ display: 'flex', justifyContent: 'space-between' }}>

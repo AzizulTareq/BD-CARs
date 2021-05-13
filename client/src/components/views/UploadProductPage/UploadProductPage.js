@@ -1,8 +1,10 @@
+import axios from 'axios'
 import React, { useState } from 'react'
-import { Form, Button, Col, Card, Row } from 'react-bootstrap'
+import { Form, Button, Card } from 'react-bootstrap'
 import FileUpload from '../../utils/FileUpload'
+import Axios from 'axios'
 
-const Continents = [
+const Brands = [
   { key: 1, value: "Toyota" },
   { key: 2, value: "Honda" },
   { key: 3, value: "Nissan" },
@@ -12,13 +14,16 @@ const Continents = [
   { key: 7, value: "Audi" }
 ]
 
-const UploadProductPage = () => {
+const UploadProductPage = (props) => {
 
   const [TitleValue, setTitleValue] = useState("")
   const [DescriptionValue, setDescriptionValue] = useState("")
-  const [ContinentValue, setContinentValue] = useState(1)
+  const [BrandValue, setBrandValue] = useState(1)
   const [PriceValue, setPriceValue] = useState(0)
+  const [MileageValue, setMileageValue] = useState(0)
+  const [ContactValue, setContactValue] = useState('+880')
   const [Images, setImages] = useState([])
+
   const onTitleChange = (event) => {
     setTitleValue(event.currentTarget.value)
 }
@@ -28,11 +33,19 @@ const onDescriptionChange = (event) => {
 }
 
 const onPriceChange = (event) => {
-    setPriceValue(event.currentTarget.value)
+  setPriceValue(event.currentTarget.value)
 }
 
-const onContinentsSelectChange = (event) => {
-    setContinentValue(event.currentTarget.value)
+const onMileageChange = (event) => {
+  setMileageValue(event.currentTarget.value)
+}
+
+const onContactChange = (event) => {
+  setContactValue(event.currentTarget.value)
+}
+
+const onBrandSelectChange = (event) => {
+    setBrandValue(event.currentTarget.value)
 }
 
 const updateImages = (newImages) => {
@@ -40,9 +53,34 @@ const updateImages = (newImages) => {
   console.log(newImages)
 }
 
+const onSubmit = (event) => {
+    event.preventDefault();
+    
+    const variables = {
+      writer: props.user.userData._id,
+      title: TitleValue,
+      description: DescriptionValue,
+      price: PriceValue,
+      mileage: MileageValue,
+      contact: ContactValue,
+      images: Images,
+      brand: BrandValue
+    }
+
+    Axios.post('/api/product/uploadProduct', variables)
+      .then(response => {
+        if(response.data.success) {
+            alert('Product Uploader Successfully!')
+            props.history.push('/')
+        } else {
+            alert('Failed to upload product')
+        }
+      })
+}
+
     return (
         <>
-        <Form className="container">
+        <Form className="container" onSubmit={onSubmit}>
           <br />
           <br />
         <Card.Title className="text-center">Add A Car To Sell</Card.Title>
@@ -74,18 +112,37 @@ const updateImages = (newImages) => {
     placeholder="Price" />
   </Form.Group>
 
+  <Form.Group controlId="formGroupPassword">
+    <Form.Label>Mileage (km)</Form.Label>
+    <Form.Control type="number" 
+    onChange={onMileageChange}
+    value={MileageValue}
+    placeholder="Mileage" />
+  </Form.Group>
+
+  <Form.Group controlId="formGroupPassword">
+    <Form.Label>Contact no</Form.Label>
+    <Form.Control type="text" 
+    onChange={onContactChange}
+    value={ContactValue}
+    placeholder="Contact no" />
+  </Form.Group>
+
   <Form.Group controlId="formGroupEmail">
     <Form.Label>Brand</Form.Label>
     <Form.Control as="select"
         className="mr-sm-2"
-        onChange={onContinentsSelectChange} 
-        value={ContinentValue}
+        onChange={onBrandSelectChange} 
+        value={BrandValue}
         id="inlineFormCustomSelect"
         custom>
-            {Continents.map(item => (
+            {Brands.map(item => (
                         <option key={item.key} value={item.key}>{item.value} </option>
                     ))}
       </ Form.Control>
+          <br />
+          <br />
+      <Button variant="info" onClick={onSubmit}>Submit</Button>
   </Form.Group>
 
 
