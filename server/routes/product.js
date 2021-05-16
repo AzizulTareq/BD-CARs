@@ -41,4 +41,12 @@ router.post('/uploadProduct', auth, (req, res) => {
     })
 })
 
-module.exports = router;
+router.post('/getProducts', auth, (req, res) => {
+    Products.find()
+        .exec((err, products) => {
+            if(err) return res.status(400).json({ success: false, err })
+            res.status(200).json({ success: true, products })
+        })
+})
+
+module.exports = router;  

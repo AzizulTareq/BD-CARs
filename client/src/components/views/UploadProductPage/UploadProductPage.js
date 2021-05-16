@@ -55,6 +55,11 @@ const updateImages = (newImages) => {
 
 const onSubmit = (event) => {
     event.preventDefault();
+
+    if(!TitleValue || !DescriptionValue || !BrandValue || !PriceValue || 
+      !MileageValue || !ContactValue || !Images) {
+        return alert('fill all the fields first')
+      }
     
     const variables = {
       writer: props.user.userData._id,
