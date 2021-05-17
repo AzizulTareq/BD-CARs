@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { Product } = require("../models/Product");
-const multer = require('multer') 
+const multer = require('multer')
 const { auth } = require("../middleware/auth");
 
 const storage = multer.diskStorage({
@@ -42,7 +42,7 @@ router.post('/uploadProduct', auth, (req, res) => {
 })
 
 router.post('/getProducts', auth, (req, res) => {
-    Products.find()
+    Product.find()
         .exec((err, products) => {
             if(err) return res.status(400).json({ success: false, err })
             res.status(200).json({ success: true, products })
