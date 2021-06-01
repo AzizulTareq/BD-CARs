@@ -1,7 +1,7 @@
 import Axios from 'axios';
 import React, { useState, useEffect} from 'react'
 import { FaCode } from "react-icons/fa";
-import { Col, Row, Card } from 'react-bootstrap'
+import { Col, Row, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ProductCard from '../../utils/ProductCard'
 
@@ -9,17 +9,26 @@ import ProductCard from '../../utils/ProductCard'
 function LandingPage() {
 
     const [Products, setProducts ] = useState([])
+    const [visible, setVisible] = useState(4)
+  
 
     useEffect(() => {
         Axios.post('/api/product/getProducts')
-            .then(response => {
-                if(response.data.success) {
-                    setProducts(response.data.products)                    
-                } else {
-                    alert('Failed to fetch data')
-                }
-            })
+        .then(response => {
+            if(response.data.success) {
+                setProducts(response.data.products)                   
+            } else {
+                alert('Failed to fetch data')
+            }
+        })
+        
+        
     }, [])
+
+
+    const onSeeMore = () => {
+        setVisible((previousValue) => previousValue + 4 )
+    }
 
 
     return (
@@ -32,19 +41,23 @@ function LandingPage() {
                 <div style={{ display: 'flex', height: '300px', justifyContent: 'center', alignItems: 'center' }}>
                     <h2>No post yet...</h2>
                 </div> :
-                <div>
-                    {Products.map((product) => (
+                <Row>
+                    {Products.slice(0, visible).map((product) => (
               <Col sm={12} md={6} lg={4} xl={3}>
                 <ProductCard product={product} />
               </Col>
             ))}
                    
-                </div>
+                </Row>
             }
             <br></br>
-            <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <button>Load More</button>
+
+         
+                <div style={{ display: 'flex', justifyContent: 'center'}}>
+                <Button onClick={onSeeMore} variant="outline-info">See More</Button>
             </div>
+    
+            
         </div>
     )
 }
