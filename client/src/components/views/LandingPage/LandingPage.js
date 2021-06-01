@@ -1,8 +1,6 @@
 import Axios from 'axios';
 import React, { useState, useEffect} from 'react'
-import { FaCode } from "react-icons/fa";
 import { Col, Row, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
 import ProductCard from '../../utils/ProductCard'
 
 
