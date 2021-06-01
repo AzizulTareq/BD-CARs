@@ -42,10 +42,15 @@ router.post('/uploadProduct', auth, (req, res) => {
 })
 
 router.post('/getProducts', auth, (req, res) => {
+    let order = req.body.order ? req.body.order : "desc";
+    let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
+
     Product.find()
-        .exec((err, products) => {
+    .populate("writer")
+            .sort([[sortBy, order]])
+    .exec((err, products) => {
             if(err) return res.status(400).json({ success: false, err })
-            res.status(200).json({ success: true, products })
+            res.status(200).json({ success: true, products, postSize: products.length })
         })
 })
 

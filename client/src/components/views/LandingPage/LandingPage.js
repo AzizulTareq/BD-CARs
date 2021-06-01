@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useState, useEffect} from 'react'
 import { Col, Row, Button } from 'react-bootstrap'
 import ProductCard from '../../utils/ProductCard'
+import Banner from '../Banner/Banner'
 
 
 function LandingPage() {
@@ -31,6 +32,7 @@ function LandingPage() {
 
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
+            <Banner />
             <div style={{ textAlign: 'center' }}>
                 <h2>  Find your next car here! </h2>
             </div>
