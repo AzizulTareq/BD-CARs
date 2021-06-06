@@ -3,7 +3,7 @@ import React, { useState, useEffect} from 'react'
 import { Col, Row, Button } from 'react-bootstrap'
 import ProductCard from '../../utils/ProductCard'
 import Banner from '../Banner/Banner'
-
+import CheckBox from './brands/CheckBox'
 
 function LandingPage() {
 
@@ -36,7 +36,7 @@ function LandingPage() {
             <div style={{ textAlign: 'center' }}>
                 <h2>  Find your next car here! </h2>
             </div>
- 
+            <CheckBox />
             {Products.length === 0 ?
                 <div style={{ display: 'flex', height: '300px', justifyContent: 'center', alignItems: 'center' }}>
                     <h2>No post yet...</h2>
