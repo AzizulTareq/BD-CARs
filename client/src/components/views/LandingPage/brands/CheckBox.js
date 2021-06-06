@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, DropdownButton, ButtonGroup, Dropdown } from 'react-bootstrap'
+import { Form, Accordion, Card, Dropdown, Button } from 'react-bootstrap'
 
 const brands = [
     {
@@ -36,15 +36,14 @@ const CheckBox = (props) => {
 
     const [Checked, setChecked] = useState([])
 
-    
-
     const handleToggle = (value) => {
+
         const currentIndex = Checked.indexOf(value);
         const newChecked = [...Checked];
 
-        if(currentIndex === -1){
+        if (currentIndex === -1) {
             newChecked.push(value)
-        }else {
+        } else {
             newChecked.splice(currentIndex, 1)
         }
 
@@ -52,24 +51,44 @@ const CheckBox = (props) => {
         props.handleFilters(newChecked)
     }
 
+const renderCheckbox = () => {
+  return (
+    <Form>
+    {brands.map((brand) => (
+        <div key={brand._id} className="mb-3">
+      <Form.Check 
+        type='checkbox'
+        id={brand._id}
+        label={brand.name}
+      />
+        </div>
+        ))}
+    </Form>
+        )
+  }
 
-    const renderCheckbox = () => brands.map((value, index) => (
-                
-                  <Form.Check 
-                    custom
-                    onChange={() => handleToggle(value._id)}
-                    type="checkbox"
-                    label={value.name}
-                    checked={Checked.indexOf(value._id) === -1 ? false : true}
-                  />
-            
-               
-            ))
+    
+
+    
+
+
+
+
+
 
     return (
-        <div>
-            {renderCheckbox()}
-        </div>
+        <Accordion>
+        <Card>
+          <Card.Header>
+            <Accordion.Toggle as={Button} variant="link" eventKey="0">
+              Brands
+            </Accordion.Toggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>{renderCheckbox()}</Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
     )
 }
 

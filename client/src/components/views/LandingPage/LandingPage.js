@@ -7,7 +7,7 @@ import CheckBox from './brands/CheckBox'
 
 function LandingPage() {
 
-    const [Products, setProducts ] = useState([])
+    const [Products, setProducts ] = useState([])                                                                                                                                                                                       
     const [visible, setVisible] = useState(4)
   
 
@@ -29,6 +29,10 @@ function LandingPage() {
         setVisible((previousValue) => previousValue + 4 )
     }
 
+    const handleFilters = (filters, category) => {
+        
+    }
+
 
     return (
         <div style={{ width: '75%', margin: '3rem auto' }}>
@@ -36,15 +40,19 @@ function LandingPage() {
             <div style={{ textAlign: 'center' }}>
                 <h2>  Find your next car here! </h2>
             </div>
-            <CheckBox />
+
+            <CheckBox 
+                handleFilters={filters => handleFilters(filters, "brands")}
+            />
+
             {Products.length === 0 ?
                 <div style={{ display: 'flex', height: '300px', justifyContent: 'center', alignItems: 'center' }}>
                     <h2>No post yet...</h2>
                 </div> :
                 <Row>
-                    {Products.slice(0, visible).map((product) => (
+                    {Products.slice(0, visible).map((product, index) => (
               <Col sm={12} md={6} lg={4} xl={3}>
-                <ProductCard product={product} />
+                <ProductCard key={index} product={product} />
               </Col>
             ))}
                    
