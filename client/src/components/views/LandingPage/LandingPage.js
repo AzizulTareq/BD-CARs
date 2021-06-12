@@ -4,6 +4,8 @@ import { Col, Row, Button } from 'react-bootstrap'
 import ProductCard from '../../utils/ProductCard'
 import Banner from '../Banner/Banner'
 import CheckBox from './brands/CheckBox'
+import RadioBox from './brands/RadioBox'
+import Search from './brands/Search'
 
 function LandingPage() {
 
@@ -30,21 +32,34 @@ function LandingPage() {
     }
 
     const handleFilters = (filters, category) => {
-        
+        console.log(filters)
     }
 
 
     return (
-        <div style={{ width: '75%', margin: '3rem auto' }}>
-            <Banner />
+        <div>
+            <Banner style={{ width: '100%', margin: '3rem auto' }} />
+            <div style={{ width: '90%', margin: '3rem auto' }}>
+            
             <div style={{ textAlign: 'center' }}>
-                <h2>  Find your next car here! </h2>
+                
             </div>
 
-            <CheckBox 
+            <Row>
+                <Col>
+                <CheckBox 
                 handleFilters={filters => handleFilters(filters, "brands")}
-            />
+                />
+                </Col>
 
+                <Col>
+                <RadioBox 
+                handleFilters={filters => handleFilters(filters, "price")}
+                />
+                </Col>
+            </Row>
+
+            
             {Products.length === 0 ?
                 <div style={{ display: 'flex', height: '300px', justifyContent: 'center', alignItems: 'center' }}>
                     <h2>No post yet...</h2>
@@ -64,7 +79,7 @@ function LandingPage() {
                 <div style={{ display: 'flex', justifyContent: 'center'}}>
                 <Button onClick={onSeeMore} variant="outline-info">See More</Button>
             </div>
-    
+            </div>
             
         </div>
     )

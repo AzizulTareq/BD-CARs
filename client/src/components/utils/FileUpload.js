@@ -47,7 +47,7 @@ const FileUpload = (props) => {
             >
                 {({ getRootProps, getInputProps }) => (
                     <div style={{
-                        width: '200px', height: '200px', border: '1px solid blue',
+                        width: '100px', height: '100px', border: '1px solid blue',
                         display: 'flex', alignItems: 'center', justifyContent: 'center'
                     }}
 
@@ -64,7 +64,7 @@ const FileUpload = (props) => {
             <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll'}}>
                 {Images.map((image, index) => (
                     <div onClick={() => onDelete(image)}>
-                        <img style={{minWidth: '300PX', width: '300px', height: '240px' }} src={`http://localhost:5000/${image}`} alt={`productImg-${index}`} />
+                        <img style={{minWidth: '300PX', width: '300px', height: '240px', border: '10px' }} src={`http://localhost:5000/${image}`} alt={`productImg-${index}`} />
                     </div>
                 ))}
 

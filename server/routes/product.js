@@ -21,7 +21,6 @@ const storage = multer.diskStorage({
 })
 
 var upload = multer({ storage: storage}).single("file")
-
 // product
 router.post("/uploadImage", auth, (req, res) => {
     upload(req, res, err => {
@@ -40,12 +39,25 @@ router.post('/uploadProduct', auth, (req, res) => {
         return res.status(200).json({ success: true })
     })
 })
-
+ 
 router.post('/getProducts', (req, res) => {
     let order = req.body.order ? req.body.order : "desc";
     let sortBy = req.body.sortBy ? req.body.sortBy : "_id";
 
-    Product.find()
+    let findArgs = {};
+
+    
+
+    for(let key in req.body.filters) {
+        if(req.body.filters[key].length > 0) {
+            if(key === "price"){
+
+            }else {
+                findArgs[key] = req.body.filters[key];
+            }
+        }
+    }
+    Product.find(findArgs)
     .populate("writer")
             .sort([[sortBy, order]])
     .exec((err, products) => {

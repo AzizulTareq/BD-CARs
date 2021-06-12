@@ -55,27 +55,20 @@ const renderCheckbox = () => {
   return (
     <Form>
     {brands.map((brand) => (
-        <div key={brand._id} className="mb-3">
+    <div key={brand._id} className="mb-3">
       <Form.Check 
+        onChange={() => handleToggle(brand._id)}
         type='checkbox'
         id={brand._id}
         label={brand.name}
       />
         </div>
-        ))}
+    ))}
     </Form>
         )
   }
 
     
-
-    
-
-
-
-
-
-
     return (
         <Accordion>
         <Card>
