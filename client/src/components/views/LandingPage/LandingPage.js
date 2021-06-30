@@ -26,8 +26,6 @@ function LandingPage() {
         setVisible((previousValue) => previousValue + 8 )
     }
 
-
-
     return (
         <div>
             <Banner style={{ width: '100%', margin: '3rem auto' }} />
