@@ -3,11 +3,12 @@ import React, { useState, useEffect} from 'react'
 import { Col, Row, Button } from 'react-bootstrap'
 import ProductCard from '../../utils/ProductCard'
 import Banner from '../Banner/Banner'
+import loading2 from './loading2.gif'
 
 function LandingPage() {
 
     const [Products, setProducts ] = useState([])                                                                                                                                                                                       
-    const [visible, setVisible] = useState(4)
+    const [visible, setVisible] = useState(8)
 
     useEffect(() => {
         Axios.get('/api/product/')
@@ -22,7 +23,7 @@ function LandingPage() {
 
 
     const onSeeMore = () => {
-        setVisible((previousValue) => previousValue + 4 )
+        setVisible((previousValue) => previousValue + 8 )
     }
 
 
@@ -39,11 +40,12 @@ function LandingPage() {
             
             {Products.length === 0 ?
                 <div style={{ display: 'flex', height: '300px', justifyContent: 'center', alignItems: 'center' }}>
-                    <h2>No post yet...</h2>
+                    <img style={{height: '200px', width: '280px'}} src={loading2} />
                 </div> :
                 <div>
                     <h2 style={{textAlign: 'center'}}>BEST MARKET PLACE TO BUY & SELL CARS</h2>
                 <Row>
+                 
                     {Products.slice(0, visible).map((product, index) => (
               <Col sm={12} md={6} lg={4} xl={3}>
                 <ProductCard key={index} product={product} />
@@ -51,14 +53,14 @@ function LandingPage() {
             ))}
                    
                 </Row>
-                </div>
-            }
-            <br></br>
 
-         
                 <div style={{ display: 'flex', justifyContent: 'center'}}>
-                <Button onClick={onSeeMore} variant="outline-info">See More</Button>
+               <Button onClick={onSeeMore} variant="outline-info">See More</Button>
+             </div>
             </div>
+ 
+            }
+            
             </div>
             
         </div>
