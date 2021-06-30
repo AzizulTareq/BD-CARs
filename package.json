@@ -12,6 +12,7 @@
   "author": "Azizul Tareq",
   "license": "MIT",
   "dependencies": {
+    "@forhot2000/express-async-handler": "^1.0.2",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.0",
     "concurrently": "^6.0.2",
@@ -19,6 +20,7 @@
     "cors": "^2.8.5",
     "debug": "^4.3.1",
     "express": "^4.17.1",
+    "express-async-handler": "^1.1.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
     "mongoose": "^5.12.7",

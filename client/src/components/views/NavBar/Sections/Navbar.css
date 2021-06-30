@@ -10,6 +10,8 @@ body {
   border-bottom: solid 1px #ffffff;
   overflow: auto;
   box-shadow: 0 0 30px #ffffff;
+  position: sticky;
+  background-color: #fff;
 }
 
 .menu__logo {
