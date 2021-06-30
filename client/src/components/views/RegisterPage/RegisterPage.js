@@ -76,7 +76,7 @@ function RegisterPage(props) {
             if (response.payload.success) {
               props.history.push("/login");
             } else {
-              alert(response.payload.err.errmsg)
+              props.history.push("/login");
             }
           })
 
@@ -98,7 +98,7 @@ function RegisterPage(props) {
         } = props;
         return (
           <div className="app">
-            <h2>Sign Up</h2>
+            <h2 style={{color: '#298ADF'}}>Sign Up</h2>
             <Form style={{ minWidth: '375px' }} {...formItemLayout} onSubmit={handleSubmit} >
 
               <Form.Item required label="Name">

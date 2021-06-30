@@ -54,21 +54,21 @@ const FileUpload = (props) => {
                         {...getRootProps()}
                     >
                         <input {...getInputProps()} />
-                        <AiFillPlusCircle style={{ fontSize: '3rem' }} />
-
-
+                        <AiFillPlusCircle style={{ fontSize: '2rem' }} />
                     </div>
                 )}
             </Dropzone>
+            <p>Upload Images</p>
 
             <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll'}}>
                 {Images.map((image, index) => (
                     <div onClick={() => onDelete(image)}>
                         <img style={{minWidth: '300PX', width: '300px', height: '240px', border: '10px' }} src={`http://localhost:5000/${image}`} alt={`productImg-${index}`} />
+                        <br />
                     </div>
                 ))}
-
             </div>
+           
         </div>
     )
 }

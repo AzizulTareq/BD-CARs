@@ -24,7 +24,7 @@ function LoginPage(props) {
   return (
     <Formik
       initialValues={{
-        email: initialEmail,
+        email: '',
         password: '',
       }}
       validationSchema={Yup.object().shape({
@@ -79,8 +79,8 @@ function LoginPage(props) {
         } = props;
         return (
           <div className="app">
-
-            <Title level={2}>Log In</Title>
+            <Title level={2} style={{color: '#298ADF'}}>Log In</Title>
+            <h6 style={{color: '#298ADF'}}>You need to login/signup to sell a car!</h6> <br />
             <form onSubmit={handleSubmit} style={{ width: '350px' }}>
 
               <Form.Item required>
@@ -133,7 +133,8 @@ function LoginPage(props) {
                     Log in
                 </Button>
                 </div>
-                Don't Have An Account?  <a href="/register">register now!</a>
+                <br />
+                <h6 style={{textAlign: 'center'}}> <span style={{color: '#298ADF'}}>Don't Have An Account?</span> <br /> <br /> <a href="/register"><Button variant="outline-info">Register</Button>{' '}</a></h6> 
               </Form.Item>
             </form>
           </div>

@@ -41,7 +41,7 @@ function LandingPage() {
                     <img style={{height: '200px', width: '280px'}} src={loading2} />
                 </div> :
                 <div>
-                    <h2 style={{textAlign: 'center'}}>BEST MARKET PLACE TO BUY & SELL CARS</h2>
+                    <h2 style={{textAlign: 'center'}}>Best Market Place To Buy & Sell Cars</h2>
                 <Row>
                  
                     {Products.slice(0, visible).map((product, index) => (
