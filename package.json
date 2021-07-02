@@ -3,17 +3,14 @@
   "version": "1.0.0",
   "description": "a car app to sell cars",
   "main": "index.js",
-  "engines": {
-    "node": "14.16.1",
-    "npm": "6.14.12",
-    "yarn": "1.22.10"
-  },
   "scripts": {
     "start": "node server/index.js",
-    "backend": "nodemon server/index.js",
-    "frontend": "npm run start --prefix client",
-    "dev": "concurrently \"npm run backend\" \"npm run start --prefix client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+    "server": "nodemon server/index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run start --prefix client\"",
+    "data:import": "node backend/seeder",
+    "data:destroy": "node backend/seeder -d",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
   },
   "author": "Azizul Tareq",
   "license": "MIT",
