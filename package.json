@@ -4,7 +4,9 @@
   "description": "a car app to sell cars",
   "main": "index.js",
   "engines": {
-    "node": "14.16.1"
+    "node": "14.16.1",
+    "npm": "6.14.12",
+    "yarn": "1.22.10"
   },
   "scripts": {
     "start": "node server/index.js",
