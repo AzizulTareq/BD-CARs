@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const dotenv = require('dotenv');
 
 const server = require("http").createServer(app);
 const config = require("./config/key");

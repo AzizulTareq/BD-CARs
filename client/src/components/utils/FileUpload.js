@@ -63,7 +63,7 @@ const FileUpload = (props) => {
             <div style={{ display: 'flex', width: '350px', height: '240px', overflowX: 'scroll'}}>
                 {Images.map((image, index) => (
                     <div onClick={() => onDelete(image)}>
-                        <img style={{minWidth: '300PX', width: '300px', height: '240px', border: '10px' }} src={`http://localhost:5000/${image}`} alt={`productImg-${index}`} />
+                        <img style={{minWidth: '300PX', width: '300px', height: '240px', border: '10px' }} src={`HTTP_PROXY/${image}`} alt={`productImg-${index}`} />
                         <br />
                     </div>
                 ))}

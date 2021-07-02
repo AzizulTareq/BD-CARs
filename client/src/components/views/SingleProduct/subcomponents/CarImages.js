@@ -11,8 +11,8 @@ const CarImages = ({ cardetails }) => {
 
             cardetails.images && cardetails.images.map( item => {
                 images.push({
-                    original: `http://localhost:5000/${item}`,
-                    thumbnail: `http://localhost:5000/${item}`
+                    original: `HTTP_PROXY/${item}`,
+                    thumbnail: `HTTP_PROXY/${item}`
                 })
             })
             setImages(images)
